@@ -38,7 +38,6 @@ class HopfieldNet:
                 for j in range(self.numb_neuron):
                     input_sum = self.weights[i, j] * self.Neuron[j, 0]
 
-                print(input_sum)
                 # old_neuron_state = self.Neuron
                 if input_sum >= 0.3:
                     self.Neuron[i, 0] = 1

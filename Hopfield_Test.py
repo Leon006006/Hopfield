@@ -1,8 +1,6 @@
 import numpy as np
 import Hopfield as Hop
-import matplotlib as mtpl
-
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 
 # Matrix version of one
@@ -44,6 +42,6 @@ plt.show()
 Training_Data = np.concatenate((One_Matrix.reshape(100, 1), Two_Matrix.reshape(100, 1), Three_Matrix.reshape(100, 1)), axis=1)
 Network = Hop.HopfieldNet(100)
 Network.train(Training_Data)
-associated_pattern = Network.recpattern(disturbed_One_Matrix.reshape((100, 1)), 30)
+associated_pattern = Network.recpattern(disturbed_Three_Matrix.reshape((100, 1)), 30)
 plt.matshow(associated_pattern.reshape(10, 10))
 plt.show()
