@@ -2,6 +2,7 @@ import numpy as np
 
 from matplotlib import pyplot as plt
 
+
 class HopfieldNet:
     def __init__(self, numb_neuron):
         """
@@ -15,7 +16,7 @@ class HopfieldNet:
         """
 
         :param trainings_data: Data-Set to train from
-        :return:
+        :return: reconstructed Pattern
         """
         numb_patterns = trainings_data.shape[1]
         # Hebbian learning rule
@@ -28,22 +29,25 @@ class HopfieldNet:
                 for pattern in range(numb_patterns):
                     bit_sum += trainings_data[i, pattern] * trainings_data[j, pattern]
 
-                self.weights[i, j] = (1/numb_patterns) * bit_sum
+                self.weights[i, j] = (1 / numb_patterns) * bit_sum
 
     def recpattern(self, pattern, iterations):
         self.Neuron = pattern
 
         for iteration in range(iterations):
             for i in range(self.numb_neuron):
+                input_sum = 0
                 for j in range(self.numb_neuron):
-                    input_sum = self.weights[i, j] * self.Neuron[j, 0]
+                    input_sum += self.weights[i, j] * self.Neuron[j, 0]
 
-                # old_neuron_state = self.Neuron
-                if input_sum >= 0.3:
+                old_neuron_state = self.Neuron
+                if input_sum >= -16:
                     self.Neuron[i, 0] = 1
                 else:
                     self.Neuron[i, 0] = -1
-        # if np.all(old_neuron_state - self.Neuron) <= 10**-3:
-            # return self.Neuron
+
+            if np.all(np.abs(old_neuron_state - self.Neuron)) <= 10**-3:
+                print("Minimum reached after", iteration+1, "iteration(s)")
+                return self.Neuron
 
         return self.Neuron
