@@ -45,13 +45,30 @@ plt.matshow(disturbed_Three_Matrix)
 plt.xlabel('Disturbed 3')
 plt.show()
 '''
+# Matrix Version of four
+Four_Matrix = np.full((10, 10), -1)
+Four_Matrix[1:5, 2] = Four_Matrix[4, 3:6] = Four_Matrix[1:9, 6] = 1
+# Matrix Version of disturbed four
+disturbed_Four_Matrix = np.full((10, 10), -1)
+disturbed_Four_Matrix[1:5, 2] = disturbed_Four_Matrix[4, 3:5] = disturbed_Four_Matrix[1:9, 6] = 1
+'''
+plt.matshow(Four_Matrix)
+plt.xlabel('Correct 4')
+plt.show()
+plt.matshow(disturbed_Four_Matrix)
+plt.xlabel('Disturbed 4')
+plt.show()
+'''
 # Putting Training Data together
-Training_Data = np.concatenate((One_Matrix.reshape(100, 1), Two_Matrix.reshape(100, 1), Three_Matrix.reshape(100, 1)), axis=1)
+Training_Data = np.concatenate((One_Matrix.reshape(100, 1),
+                                Two_Matrix.reshape(100, 1),
+
+                                Four_Matrix.reshape(100, 1)), axis=1)
 # Initialize and train Network
 Network = Hop.HopfieldNet(100)
 Network.train(Training_Data)
 # Test disturbed pattern
-associated_pattern = Network.recpattern(disturbed_One_Matrix.reshape((100, 1)), 100)
+associated_pattern = Network.recpattern(disturbed_Two_Matrix.reshape((100, 1)), 100)
 plt.matshow(associated_pattern.reshape(10, 10))
 plt.xlabel('Associated Pattern')
 plt.show()

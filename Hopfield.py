@@ -20,16 +20,17 @@ class HopfieldNet:
         """
         numb_patterns = trainings_data.shape[1]
         # Hebbian learning rule
-        for i in range(self.numb_neuron):
-            for j in range(self.numb_neuron):
-                if i == j:
-                    continue
+        for iteration in range(10):
+            for i in range(self.numb_neuron):
+                for j in range(self.numb_neuron):
+                    if i == j:
+                        continue
 
-                bit_sum = 0
-                for pattern in range(numb_patterns):
-                    bit_sum += trainings_data[i, pattern] * trainings_data[j, pattern]
+                    bit_sum = 0
+                    for pattern in range(numb_patterns):
+                        bit_sum += trainings_data[i, pattern] * trainings_data[j, pattern]
 
-                self.weights[i, j] = (1 / numb_patterns) * bit_sum
+                    self.weights[i, j] += (1 / numb_patterns) * bit_sum
 
     def recpattern(self, pattern, iterations):
         self.Neuron = pattern
@@ -41,7 +42,7 @@ class HopfieldNet:
                     input_sum += self.weights[i, j] * self.Neuron[j, 0]
 
                 old_neuron_state = self.Neuron
-                if input_sum >= -16:
+                if input_sum >= -150:
                     self.Neuron[i, 0] = 1
                 else:
                     self.Neuron[i, 0] = -1
