@@ -62,13 +62,13 @@ plt.show()
 # Putting Training Data together
 Training_Data = np.concatenate((One_Matrix.reshape(100, 1),
                                 Two_Matrix.reshape(100, 1),
-
+                                Three_Matrix.reshape(100, 1),
                                 Four_Matrix.reshape(100, 1)), axis=1)
 # Initialize and train Network
 Network = Hop.HopfieldNet(100)
 Network.train(Training_Data)
 # Test disturbed pattern
-associated_pattern = Network.recpattern(disturbed_Two_Matrix.reshape((100, 1)), 100)
+associated_pattern = Network.recpattern(disturbed_One_Matrix.reshape((100, 1)), 100)
 plt.matshow(associated_pattern.reshape(10, 10))
-plt.xlabel('Associated Pattern')
+plt.title('Associated Pattern')
 plt.show()

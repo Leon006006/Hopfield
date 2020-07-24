@@ -14,7 +14,6 @@ class HopfieldNet:
 
     def train(self, trainings_data):
         """
-
         :param trainings_data: Data-Set to train from
         :return: reconstructed Pattern
         """
@@ -42,7 +41,7 @@ class HopfieldNet:
                     input_sum += self.weights[i, j] * self.Neuron[j, 0]
 
                 old_neuron_state = self.Neuron
-                if input_sum >= -150:
+                if input_sum >= -300:
                     self.Neuron[i, 0] = 1
                 else:
                     self.Neuron[i, 0] = -1
