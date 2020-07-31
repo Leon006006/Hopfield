@@ -8,7 +8,7 @@ One_Matrix = np.full((10, 10), -1)
 One_Matrix[3, 4] = One_Matrix[2:9, 5] = 1
 # Matrix Version of disturbed one
 disturbed_One_Matrix = np.full((10, 10), -1)
-disturbed_One_Matrix[3, 4] = disturbed_One_Matrix[2:9, 5] = 1
+disturbed_One_Matrix[3, 4] = disturbed_One_Matrix[2:8, 5] = 1
 '''
 plt.matshow(One_Matrix)
 plt.xlabel('Correct 1')
